@@ -8,15 +8,18 @@ DIY printf
 
 void printint(int n) {
     if (n < 0) {
+        // minus sign
         n *= -1;
         putchar('-');
     } else if (n == 0) {
+        // just zero
         putchar('0');
         return;
     }
     int cnt = 0;
     int output[999999];
     while (n > 0) {
+        // take lowest digit to output and /10
         // printf("%d + %d%d%d%d", n, output[0], output[1], output[2], output[3]);
         output[cnt++] = (n % 10);
         n /= 10;
@@ -24,6 +27,7 @@ void printint(int n) {
     }
     
     for (int i = (cnt - 1); i >= 0; i--) {
+        // output by reverse
         putchar(output[i] + '0');
     }
 }
@@ -39,9 +43,7 @@ void myprintf(const char* fmt, ...) {
             switch(ident) {
                 case 'd': {
                     int i = va_arg(args, int);
-                    // puts("ooointooo");
                     printint(i);
-                    //putchar(i + '0');
                     break;
                 }
                 case 's': {
@@ -56,6 +58,7 @@ void myprintf(const char* fmt, ...) {
                 }
             }
         } else {
+            // pass other char
             putchar(*it);
         }
     }
